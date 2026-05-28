@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kahoot-clone</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main class="form-container">
+        <header>
+            <h1 class="titre">Kahoot Clone !</h1>
+            <p>Entre ton code PIN pour rejoindre</p>
+        </header>
+
+        <input type="text" id="input-pin" placeholder="Code PIN">
+        <input type="text" id="input-pseudo" placeholder="Pseudo">
+        <button id="btn-valider" class="btn-action">Valider</button>
+
+    </main>
+    
+    <footer>
+        <a href="host.html" class="btn-action btn-secondary"
+            style="display: block; text-align: center; text-decoration: none; margin-top: 20px;">Créer un Quiz</a>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/host.js"></script>
+</body>
+
+</html>

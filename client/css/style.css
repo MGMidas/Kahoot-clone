@@ -1,0 +1,243 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION GLOBALE
+   ========================================================================== */
+:root {
+    /* Palette Principale (Style "Gaming Dark" moderne) */
+    --couleur-primaire: #46178f;
+    --couleur-secondaire: #ff3355;
+    --couleur-fond: #13121a; 
+    --couleur-surface: #1e1b29; 
+    --couleur-texte: #FFFFFF;
+    
+    /* Couleurs Officielles des Pavés de Réponse */
+    --kahoot-red: #e21b3c;
+    --kahoot-blue: #1368ce;
+    --kahoot-yellow: #d89e00;
+    --kahoot-green: #26890c;
+
+    /* Ombres pour l'effet "Bouton Poussoir 3D" */
+    --shadow-red: #9d1226;
+    --shadow-blue: #0d468b;
+    --shadow-yellow: #966e00;
+    --shadow-green: #1a5e08;
+    
+    --transition-fast: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    background: var(--couleur-fond);
+    color: var(--couleur-texte);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. INTERFACE JOUEUR MOBILE (play.html)
+   ========================================================================== */
+
+/* Bandeau du haut */
+.player-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--couleur-surface);
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.player-info { color: #fff; }
+.player-score { color: var(--kahoot-yellow); }
+
+/* Conteneur principal mobile */
+.player-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.game-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Grille des 4 boutons tactiles (Prend tout l'espace disponible) */
+.pad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    height: 80vh; /* S'adapte à la hauteur de l'écran du smartphone */
+}
+
+/* Style de base des boutons de couleur */
+.pad-btn {
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+/* Formes géométriques blanches à l'intérieur des boutons */
+.pad-btn .shape {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Attribution des couleurs et de l'effet 3D "poussoir" */
+.btn-red { 
+    background: var(--kahoot-red); 
+    box-shadow: 0 8px 0 var(--shadow-red); 
+}
+.btn-blue { 
+    background: var(--kahoot-blue); 
+    box-shadow: 0 8px 0 var(--shadow-blue); 
+}
+.btn-yellow { 
+    background: var(--kahoot-yellow); 
+    box-shadow: 0 8px 0 var(--shadow-yellow); 
+}
+.btn-green { 
+    background: var(--kahoot-green); 
+    box-shadow: 0 8px 0 var(--shadow-green); 
+}
+
+/* Effet au clic sur smartphone (Le bouton s'enfonce) */
+.pad-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 transparent;
+}
+
+/* Écrans d'attente et feedback */
+.loader-content, .feedback-content {
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.subtext {
+    opacity: 0.6;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   3. PAGES FORMULAIRES (index.html / join.html)
+   ========================================================================== */
+.form-container {
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+    background: var(--couleur-surface);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #ffffff, rgba(255, 255, 255, 0.7));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; 
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--couleur-texte);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--couleur-primaire);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Boutons classiques (Créer, Rejoindre) */
+.btn-action {
+    width: 100%;
+    background-color: var(--kahoot-green);
+    color: var(--couleur-texte);
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--shadow-green);
+    transition: var(--transition-fast);
+}
+
+.btn-action:hover {
+    filter: brightness(1.1);
+}
+
+.btn-action:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--shadow-green);
+}
+
+.btn-secondary {
+    background-color: var(--couleur-primaire);
+    box-shadow: 0 4px 0 #2a0e5c;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   4. OUTILS & UTILITIES
+   ========================================================================== */
+.hidden {
+    display: none !important;
+}
+
+/* Animation de chargement (Spinner) */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--couleur-primaire);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

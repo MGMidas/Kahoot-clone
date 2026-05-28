@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créer un quiz</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <main class="form-container">
+        <header>
+            <h1 class="titre">Kahoot-Clone</h1>
+            <h2>Créer le quiz</h2>
+        </header>
+
+        <input type="text" id="titre-quiz" placeholder="Titre du quiz" />
+        <input type="text" id="question" placeholder="Question" />
+
+        <input type="text" id="reponse-a" placeholder="Réponse A" />
+        <input type="text" id="reponse-b" placeholder="Réponse B" />
+        <input type="text" id="reponse-c" placeholder="Réponse C" />
+        <input type="text" id="reponse-d" placeholder="Réponse D" />
+
+        <select id="bonne-reponse">
+            <option value="A">Bonne réponse : A</option>
+            <option value="B">Bonne réponse : B</option>
+            <option value="C">Bonne réponse : C</option>
+            <option value="D">Bonne réponse : D</option>
+        </select>
+
+        <button id="btn-lancer" class="btn-action">Lancer la partie</button>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/host.js"></script>
+</body>
+</html>
