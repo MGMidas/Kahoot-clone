@@ -1,4 +1,4 @@
-## 📅 Mercredi 26 Mai 2026
+## 📅 mardi 25 Mai 2026
 absent
 
 ## 📅 Mercredi 26 Mai 2026
@@ -90,3 +90,40 @@ absent
 - Créer les pages HTML login/register
 
 chaque matin 9h15 et 9h30 je remplie mon tableau de bord noter ce que je doit faire et le soir brief sur les difficulté et les solution & apprentissage
+
+## 📅 Vendredi 29 Mai 2026
+
+**🎯 Objectifs de la session :**
+- [x] Système d'authentification complet
+- [x] Pages HTML login et register
+- [x] JavaScript register.js en cours
+
+**✅ Réalisations :**
+- auth.js : routes /register et /login (bcrypt + JWT)
+- authMiddleware.js : vérification token JWT
+- server.js : ajout express.json() + branchement authRoutes
+- login.html et register.html créés et stylisés
+- register.js : fetch POST /api/auth/register en cours
+- Pushes réguliers sur GitHub (MGMidas/Kahoot-clone)
+
+**🚧 Difficultés & Bugs rencontrés :**
+- const app = express() déclaré deux fois dans server.js
+- async/await mal placé sur le fetch
+- Confusion entre méthodes HTTP et codes HTTP
+
+**💡 Solutions & Apprentissages :**
+- app.use(express.json()) obligatoire pour lire req.body
+- bcrypt.compare(password, user.password) pour vérifier
+- jwt.sign({payload}, secret, {expiresIn}) pour créer le token
+- try/catch pour gérer les erreurs de jwt.verify()
+- async () => {} pour utiliser await dans un addEventListener
+
+**⏭️ Prochaines étapes :**
+- Finir register.js (traitement réponse fetch)
+- Coder login.js
+- Tester l'auth avec Thunder Client
+- Coder player.js (rejoindre une partie via PIN + pseudo)
+- Relier auth au jeu (seul un host connecté peut créer une partie)
+- Ajouter les liens entre pages (login → host, register → login)
+- Créer/stocker les quiz dans un fichier JSON
+- Afficher les questions en temps réel via Socket.io
