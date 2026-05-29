@@ -8,6 +8,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+app.use(express.json());
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 // Définition du port (par défaut 3000 si le fichier .env n'est pas lu)
 const PORT = process.env.PORT || 3000;
 
