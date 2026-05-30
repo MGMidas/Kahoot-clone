@@ -1,6 +1,8 @@
 ## 📅 mardi 25 Mai 2026
 absent
 
+---
+
 ## 📅 Mercredi 26 Mai 2026
 
 **🎯 Objectifs de la session :**
@@ -91,6 +93,8 @@ absent
 
 chaque matin 9h15 et 9h30 je remplie mon tableau de bord noter ce que je doit faire et le soir brief sur les difficulté et les solution & apprentissage
 
+---
+
 ## 📅 Vendredi 29 Mai 2026
 
 **🎯 Objectifs de la session :**
@@ -125,5 +129,41 @@ chaque matin 9h15 et 9h30 je remplie mon tableau de bord noter ce que je doit fa
 - Coder player.js (rejoindre une partie via PIN + pseudo)
 - Relier auth au jeu (seul un host connecté peut créer une partie)
 - Ajouter les liens entre pages (login → host, register → login)
+- Créer/stocker les quiz dans un fichier JSON
+- Afficher les questions en temps réel via Socket.io
+
+---
+
+## 📅 Samedi 30 Mai 2026
+
+**🎯 Objectifs de la session :**
+- [x] Finir register.js (traitement réponse fetch)
+- [x] Coder login.js
+- [x] Tester l'auth avec Thunder Client
+- [x] Coder player.js (rejoindre une partie via PIN + pseudo)
+
+**✅ Réalisations :**
+- register.js terminé (fetch POST + redirection vers login.html)
+- login.js terminé (fetch POST + stockage token JWT + redirection host.html)
+- Auth testée avec Thunder Client — register 201 ✅ login 200 ✅
+- player.js terminé (socket.emit join + écoute join_success/join_error)
+- Correction bug : host.js retiré de index.html
+- Push réguliers sur GitHub (MGMidas/Kahoot-clone)
+
+**🚧 Difficultés & Bugs rencontrés :**
+- Thunder Client en GET au lieu de POST → 404
+- JWT_SECRET vide dans .env → erreur 500
+- bcrypt et jsonwebtoken manquants sur PC perso → npm install
+- Git ownership error sur disque E: → git config safe.directory
+
+**💡 Solutions & Apprentissages :**
+- response.ok pour vérifier le succès d'un fetch
+- localStorage.setItem('token', data.token) pour stocker le JWT
+- window.location.href pour rediriger en JS
+- socket.emit() envoie / socket.on() écoute
+- Toujours vérifier la méthode HTTP dans Thunder Client !
+
+**⏭️ Prochaines étapes :**
+- Relier auth au jeu (seul un host connecté peut créer une partie)
 - Créer/stocker les quiz dans un fichier JSON
 - Afficher les questions en temps réel via Socket.io
