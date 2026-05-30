@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
-    "email": "exemple@mail.com",
-    "password": "hashbcrypt..."
+    "id": 2,
+    "email": "test@test.com",
+    "password": "$2b$10$ScMZxFLECEuIkrdbOj.c/OGS.kylZsi7wqFBY3SzipdwveMaQOsfe"
   }
 ]
