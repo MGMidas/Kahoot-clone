@@ -93,10 +93,30 @@ body {
     border-radius: 16px;
     cursor: pointer;
     display: flex;
+    flex-direction: column; /* Pour empiler forme et texte */
     justify-content: center;
     align-items: center;
     transition: var(--transition-fast);
     position: relative;
+    padding: 10px;
+}
+
+.answer-text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.question-display-player {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.question-display-player h2 {
+    font-size: 1.5rem;
+    color: white;
 }
 
 /* Formes géométriques blanches à l'intérieur des boutons */

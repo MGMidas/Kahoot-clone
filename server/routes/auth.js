@@ -7,10 +7,32 @@ const fs = require("fs");
 
 const userfile = path.join(__dirname, "../data/users.json");
 
+// Helper pour lire les utilisateurs (async)
+async function getUsers() {
+    try {
+        if (!fs.existsSync(userfile)) {
+            return [];
+        }
+        const data = await fs.promises.readFile(userfile, "utf8");
+        return JSON.parse(data);
+    } catch (error) {
+        console.error("Erreur lecture users.json:", error);
+        return [];
+    }
+}
+
+// Helper pour sauvegarder les utilisateurs (async)
+async function saveUsers(users) {
+    try {
+        await fs.promises.writeFile(userfile, JSON.stringify(users, null, 2));
+    } catch (error) {
+        console.error("Erreur écriture users.json:", error);
+    }
+}
+
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
-  const data = fs.readFileSync(userfile, "utf8");
-  const users = JSON.parse(data);
+  const users = await getUsers();
 
   const userVerify = users.some((user) => user.email === email);
   if (userVerify) {
@@ -26,14 +48,13 @@ router.post("/register", async (req, res) => {
   };
 
   users.push(newUser);
-  fs.writeFileSync(userfile, JSON.stringify(users, null, 2));
+  await saveUsers(users);
   return res.status(201).json({ message: " ressource créée avec succès" });
 });
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const data = fs.readFileSync(userfile, "utf-8");
-  const users = JSON.parse(data);
+  const users = await getUsers();
 
   const user = users.find((user) => user.email === email);
   if (!user) {

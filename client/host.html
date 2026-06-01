@@ -7,29 +7,95 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <main class="form-container">
+    <main class="form-container" id="selection-section">
         <header>
-            <h1 class="titre">Kahoot-Clone</h1>
-            <h2>Créer le quiz</h2>
+            <h1 class="titre">Mes Quiz</h1>
+            <p>Sélectionnez un quiz pour lancer une partie (<span id="quiz-count">0</span>/10)</p>
+        </header>
+
+        <div id="quiz-list" class="quiz-grid">
+            <!-- La liste des quiz chargés s'affichera ici -->
+        </div>
+
+        <button id="btn-show-create" class="btn-action btn-secondary">Créer un nouveau quiz</button>
+    </main>
+
+    <main class="form-container hidden" id="creation-section">
+        <header>
+            <h1 class="titre">Nouveau Quiz</h1>
         </header>
 
         <input type="text" id="titre-quiz" placeholder="Titre du quiz" />
-        <input type="text" id="question" placeholder="Question" />
+        <div class="question-box">
+            <input type="text" id="question" placeholder="Question" />
+            <input type="number" id="timer" placeholder="Temps (secondes)" value="20" min="5" max="300" />
+            <input type="text" id="reponse-a" placeholder="Réponse A" />
+            <input type="text" id="reponse-b" placeholder="Réponse B" />
+            <input type="text" id="reponse-c" placeholder="Réponse C" />
+            <input type="text" id="reponse-d" placeholder="Réponse D" />
 
-        <input type="text" id="reponse-a" placeholder="Réponse A" />
-        <input type="text" id="reponse-b" placeholder="Réponse B" />
-        <input type="text" id="reponse-c" placeholder="Réponse C" />
-        <input type="text" id="reponse-d" placeholder="Réponse D" />
+            <select id="bonne-reponse">
+                <option value="0">Bonne réponse : A</option>
+                <option value="1">Bonne réponse : B</option>
+                <option value="2">Bonne réponse : C</option>
+                <option value="3">Bonne réponse : D</option>
+            </select>
+        </div>
 
-        <select id="bonne-reponse">
-            <option value="A">Bonne réponse : A</option>
-            <option value="B">Bonne réponse : B</option>
-            <option value="C">Bonne réponse : C</option>
-            <option value="D">Bonne réponse : D</option>
-        </select>
+        <div id="temp-questions-info" style="margin: 15px 0; color: var(--kahoot-yellow);">
+            Questions ajoutées : <span id="question-counter">0</span>
+        </div>
 
-        <button id="btn-lancer" class="btn-action">Lancer la partie</button>
+        <button id="btn-add-question" class="btn-action btn-secondary" style="margin-bottom: 10px; background-color: var(--kahoot-blue);">Ajouter cette question</button>
+        <button id="btn-save-quiz" class="btn-action">Enregistrer le Quiz complet</button>
+        <button id="btn-cancel-create" class="btn-action btn-secondary">Annuler</button>
     </main>
+
+    <section id="lobby-section" class="form-container hidden">
+        <header>
+            <h1 class="titre">Lobby</h1>
+            <h2>Code PIN : <span id="display-pin" style="color: var(--primary); font-size: 2rem;">------</span></h2>
+        </header>
+
+        <div id="player-list-container">
+            <h3>Joueurs connectés (<span id="player-count">0</span>)</h3>
+            <ul id="player-list">
+                <!-- Les joueurs s'afficheront ici -->
+            </ul>
+        </div>
+
+        <button id="btn-start-game" class="btn-action" onclick="demarrerLaPartie()">Commencer la partie !</button>
+    </section>
+
+    <section id="game-section" class="form-container hidden">
+        <header>
+            <div class="timer-container">
+                <span id="game-timer">--</span>
+            </div>
+            <h2 id="display-question" class="question-title">Question ici ?</h2>
+        </header>
+
+        <div class="answers-grid">
+            <div class="answer-box btn-red">
+                <span class="shape">▲</span>
+                <span id="answer-0-text">Réponse A</span>
+            </div>
+            <div class="answer-box btn-blue">
+                <span class="shape">♦</span>
+                <span id="answer-1-text">Réponse B</span>
+            </div>
+            <div class="answer-box btn-yellow">
+                <span class="shape">●</span>
+                <span id="answer-2-text">Réponse C</span>
+            </div>
+            <div class="answer-box btn-green">
+                <span class="shape">■</span>
+                <span id="answer-3-text">Réponse D</span>
+            </div>
+        </div>
+        
+        <p id="responses-count">Réponses : 0 / 0</p>
+    </section>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/host.js"></script>
